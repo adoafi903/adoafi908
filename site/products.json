@@ -1,29 +1,44 @@
 [
   {
     "id": "sample-001",
-    "title": "サンプル商品タイトル A",
-    "packageImageUrl": "https://placehold.co/300x420?text=Package+A",
+    "title": "サンプル作品タイトル A",
+    "category": "サンプルカテゴリ1",
+    "price": "550円（税込）",
+    "discountBadge": "50% OFF",
     "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
-    "views": 1520,
-    "clicks": 410,
-    "sales": 62
+    "pvCount": 15400,
+    "cvrScore": 98,
+    "images": [
+      "https://placehold.co/480x360?text=Main+A",
+      "https://placehold.co/480x360?text=Sample+A-1",
+      "https://placehold.co/480x360?text=Sample+A-2"
+    ]
   },
   {
     "id": "sample-002",
-    "title": "サンプル商品タイトル B",
-    "packageImageUrl": "https://placehold.co/300x420?text=Package+B",
+    "title": "サンプル作品タイトル B",
+    "category": "サンプルカテゴリ2",
+    "price": "1,100円（税込）",
     "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
-    "views": 980,
-    "clicks": 505,
-    "sales": 88
+    "pvCount": 22000,
+    "cvrScore": 82,
+    "images": [
+      "https://placehold.co/480x360?text=Main+B",
+      "https://placehold.co/480x360?text=Sample+B-1"
+    ]
   },
   {
     "id": "sample-003",
-    "title": "サンプル商品タイトル C",
-    "packageImageUrl": "https://placehold.co/300x420?text=Package+C",
+    "title": "サンプル作品タイトル C",
+    "category": "サンプルカテゴリ3",
+    "price": "880円（税込）",
     "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
-    "views": 2100,
-    "clicks": 300,
-    "sales": 20
+    "pvCount": 9800,
+    "cvrScore": 65,
+    "images": [
+      "https://placehold.co/480x360?text=Main+C",
+      "https://placehold.co/480x360?text=Sample+C-1",
+      "https://placehold.co/480x360?text=Sample+C-2"
+    ]
   }
 ]

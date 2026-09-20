@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>商品一覧</title>
+<title>作品一覧</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1>商品一覧</h1>
-    <div class="sort-buttons" role="group" aria-label="並べ替え">
-      <button type="button" class="sort-btn is-active" data-sort="popularity">人気順</button>
-      <button type="button" class="sort-btn" data-sort="recommended">おすすめ</button>
+  <div class="page">
+    <div class="sort-bar">
+      <span class="sort-bar-label">並び替え:</span>
+      <div class="sort-buttons" role="group" aria-label="並べ替え">
+        <button type="button" class="sort-btn sort-btn--recommend is-active" data-sort="recommend">🔥 おすすめ順（売れ筋）</button>
+        <button type="button" class="sort-btn sort-btn--popular" data-sort="popular">👀 人気順（PV数）</button>
+      </div>
     </div>
-  </header>
 
-  <!-- ここにGoogle広告のクリック報酬型タグ(AdSense等の管理画面で発行されたコード)をそのまま貼る -->
-  <div class="ad-slot" id="ad-slot-top"></div>
+    <!-- ここにGoogle広告のクリック報酬型タグ(AdSense等の管理画面で発行されたコード)をそのまま貼る -->
+    <div class="ad-slot" id="ad-slot-top"></div>
 
-  <main>
-    <div class="product-grid" id="product-grid"></div>
-  </main>
+    <main class="product-list" id="product-list"></main>
+  </div>
 
   <script src="app.js"></script>
 </body>

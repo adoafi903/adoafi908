@@ -1,38 +1,12 @@
 const PRODUCTS_URL = "products.json";
 
 const SORTERS = {
-  popularity: (items) => [...items].sort((a, b) => b.views - a.views),
-  recommended: (items) => {
-    const maxSales = Math.max(1, ...items.map((p) => p.sales));
-    // クリック率(clicks/views)と売上を1:1で正規化して合成した「おすすめ度」
-    return [...items].sort((a, b) => recommendScore(b, maxSales) - recommendScore(a, maxSales));
-  },
+  popular: (items) => [...items].sort((a, b) => b.pvCount - a.pvCount),
+  recommend: (items) => [...items].sort((a, b) => b.cvrScore - a.cvrScore),
 };
 
-function recommendScore(product, maxSales) {
-  const ctr = product.views > 0 ? product.clicks / product.views : 0;
-  const salesRatio = product.sales / maxSales;
-  return ctr * 0.5 + salesRatio * 0.5;
-}
-
-function renderProducts(items) {
-  const grid = document.getElementById("product-grid");
-  grid.innerHTML = "";
-
-  for (const product of items) {
-    const card = document.createElement("article");
-    card.className = "product-card";
-    card.innerHTML = `
-      <img src="${escapeHtml(product.packageImageUrl)}" alt="${escapeHtml(product.title)}" loading="lazy">
-      <div class="product-body">
-        <p class="product-title">${escapeHtml(product.title)}</p>
-        <p class="product-stats">閲覧 ${product.views.toLocaleString()} ・ クリック ${product.clicks.toLocaleString()} ・ 購入 ${product.sales.toLocaleString()}</p>
-        <a class="affiliate-btn" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="noopener sponsored">詳細を見る</a>
-      </div>
-    `;
-    grid.appendChild(card);
-  }
-}
+// 商品ごとに「現在表示中のサムネイル」を保持する
+const selectedImageMap = new Map();
 
 function escapeHtml(value) {
   const div = document.createElement("div");
@@ -40,11 +14,71 @@ function escapeHtml(value) {
   return div.innerHTML;
 }
 
+function renderProducts(items) {
+  const list = document.getElementById("product-list");
+  list.innerHTML = "";
+
+  for (const product of items) {
+    const currentImg = selectedImageMap.get(product.id) || product.images[0];
+
+    const card = document.createElement("article");
+    card.className = "product-card";
+    card.dataset.id = product.id;
+
+    const thumbsHtml = product.images.length > 1
+      ? `<div class="thumb-row">${product.images
+          .map(
+            (img, idx) => `
+              <button type="button" class="thumb ${img === currentImg ? "is-active" : ""}" data-img="${escapeHtml(img)}">
+                <img src="${escapeHtml(img)}" alt="サンプル${idx + 1}">
+              </button>`
+          )
+          .join("")}</div>`
+      : "";
+
+    card.innerHTML = `
+      <div class="product-media-col">
+        <div class="product-media">
+          <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="noopener noreferrer">
+            <img class="product-media-main" src="${escapeHtml(currentImg)}" alt="${escapeHtml(product.title)}">
+          </a>
+          ${product.discountBadge ? `<span class="badge-discount">${escapeHtml(product.discountBadge)}</span>` : ""}
+        </div>
+        ${thumbsHtml}
+      </div>
+      <div class="product-details-col">
+        <div>
+          <span class="badge-category">${escapeHtml(product.category)}</span>
+          <h3 class="product-title">
+            <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(product.title)}</a>
+          </h3>
+          <p class="product-price">${escapeHtml(product.price)}</p>
+        </div>
+        <div class="cta-area">
+          <a class="cta-btn" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="noopener noreferrer">
+            👉 続きを試し読み・購入する
+          </a>
+          <p class="cta-note">※外部販売サイト（FANZA/DLsite等）へ遷移します</p>
+        </div>
+      </div>
+    `;
+
+    card.querySelectorAll(".thumb").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        selectedImageMap.set(product.id, btn.dataset.img);
+        renderProducts(items);
+      });
+    });
+
+    list.appendChild(card);
+  }
+}
+
 async function main() {
   const response = await fetch(PRODUCTS_URL);
   const products = await response.json();
 
-  let currentSort = "popularity";
+  let currentSort = "recommend";
   renderProducts(SORTERS[currentSort](products));
 
   document.querySelectorAll(".sort-btn").forEach((btn) => {
