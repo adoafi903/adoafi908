@@ -1,11 +1,18 @@
 const PRODUCTS_URL = "products.json";
+const AGE_GATE_KEY = "age_gate_confirmed";
+
+const GENRE_LABELS = {
+  電子書籍: "📖 電子書籍",
+  アダルト写真集: "📸 アダルト写真集",
+  DL動画: "🎬 DL動画",
+  DVD: "💿 DVD",
+};
 
 const SORTERS = {
   popular: (items) => [...items].sort((a, b) => b.pvCount - a.pvCount),
   recommend: (items) => [...items].sort((a, b) => b.cvrScore - a.cvrScore),
 };
 
-// 商品ごとに「現在表示中のサムネイル」を保持する
 const selectedImageMap = new Map();
 
 function escapeHtml(value) {
@@ -14,9 +21,48 @@ function escapeHtml(value) {
   return div.innerHTML;
 }
 
+function setupAgeGate() {
+  const gate = document.getElementById("age-gate");
+  let confirmed = false;
+  try {
+    confirmed = localStorage.getItem(AGE_GATE_KEY) === "1";
+  } catch (e) {
+    confirmed = false;
+  }
+
+  if (confirmed) {
+    gate.style.display = "none";
+  }
+
+  document.getElementById("age-gate-yes").addEventListener("click", () => {
+    try {
+      localStorage.setItem(AGE_GATE_KEY, "1");
+    } catch (e) {
+      // localStorageが使えない環境ではセッション中のみ非表示にする
+    }
+    gate.style.display = "none";
+  });
+}
+
+function filterAndSort(products, genre, sortType) {
+  const filtered = genre === "ALL" ? products : products.filter((p) => p.category === genre);
+  return SORTERS[sortType](filtered);
+}
+
+function renderResultCount(genre, count) {
+  const label = genre === "ALL" ? "すべて" : genre;
+  document.getElementById("result-count").innerHTML =
+    `表示中: <span class="result-count-genre">${escapeHtml(label)}</span>（${count}件）`;
+}
+
 function renderProducts(items) {
   const list = document.getElementById("product-list");
   list.innerHTML = "";
+
+  if (items.length === 0) {
+    list.innerHTML = `<p class="empty-state">該当する作品が見つかりませんでした。</p>`;
+    return;
+  }
 
   for (const product of items) {
     const currentImg = selectedImageMap.get(product.id) || product.images[0];
@@ -36,6 +82,8 @@ function renderProducts(items) {
           .join("")}</div>`
       : "";
 
+    const genreLabel = GENRE_LABELS[product.category] || escapeHtml(product.category);
+
     card.innerHTML = `
       <div class="product-media-col">
         <div class="product-media">
@@ -48,7 +96,7 @@ function renderProducts(items) {
       </div>
       <div class="product-details-col">
         <div>
-          <span class="badge-category">${escapeHtml(product.category)}</span>
+          <span class="badge-category">${genreLabel}</span>
           <h3 class="product-title">
             <a href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(product.title)}</a>
           </h3>
@@ -56,9 +104,9 @@ function renderProducts(items) {
         </div>
         <div class="cta-area">
           <a class="cta-btn" href="${escapeHtml(product.affiliateUrl)}" target="_blank" rel="noopener noreferrer">
-            👉 続きを試し読み・購入する
+            👉 サンプルを見る・購入する
           </a>
-          <p class="cta-note">※外部販売サイト（FANZA/DLsite等）へ遷移します</p>
+          <p class="cta-note">※FANZA / DLsite 等の外部公式販売サイトへ遷移します</p>
         </div>
       </div>
     `;
@@ -75,17 +123,39 @@ function renderProducts(items) {
 }
 
 async function main() {
+  setupAgeGate();
+
   const response = await fetch(PRODUCTS_URL);
   const products = await response.json();
 
+  const params = new URLSearchParams(window.location.search);
+  const requestedGenre = params.get("genre");
+  const validGenres = ["ALL", ...Object.keys(GENRE_LABELS)];
+
+  let currentGenre = validGenres.includes(requestedGenre) ? requestedGenre : "ALL";
   let currentSort = "recommend";
-  renderProducts(SORTERS[currentSort](products));
+
+  const genreSelect = document.getElementById("genre-select");
+  genreSelect.value = currentGenre;
+
+  function update() {
+    const result = filterAndSort(products, currentGenre, currentSort);
+    renderResultCount(currentGenre, result.length);
+    renderProducts(result);
+  }
+
+  update();
+
+  genreSelect.addEventListener("change", () => {
+    currentGenre = genreSelect.value;
+    update();
+  });
 
   document.querySelectorAll(".sort-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       currentSort = btn.dataset.sort;
       document.querySelectorAll(".sort-btn").forEach((b) => b.classList.toggle("is-active", b === btn));
-      renderProducts(SORTERS[currentSort](products));
+      update();
     });
   });
 }

@@ -2,10 +2,10 @@
   {
     "id": "sample-001",
     "title": "サンプル作品タイトル A",
-    "category": "サンプルカテゴリ1",
+    "category": "電子書籍",
     "price": "550円（税込）",
     "discountBadge": "50% OFF",
-    "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
+    "affiliateUrl": "https://al.dlsite.com/r?aid=YOUR_AFFILIATE_ID&url=https%3A%2F%2Fwww.dlsite.com%2F",
     "pvCount": 15400,
     "cvrScore": 98,
     "images": [
@@ -17,28 +17,42 @@
   {
     "id": "sample-002",
     "title": "サンプル作品タイトル B",
-    "category": "サンプルカテゴリ2",
-    "price": "1,100円（税込）",
-    "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
-    "pvCount": 22000,
-    "cvrScore": 82,
+    "category": "アダルト写真集",
+    "price": "1,200円（税込）",
+    "discountBadge": "限定特典つき",
+    "affiliateUrl": "https://www.fanza.com/ppc/media/YOUR_AFFILIATE_ID/",
+    "pvCount": 28000,
+    "cvrScore": 92,
     "images": [
       "https://placehold.co/480x360?text=Main+B",
-      "https://placehold.co/480x360?text=Sample+B-1"
+      "https://placehold.co/480x360?text=Sample+B-1",
+      "https://placehold.co/480x360?text=Sample+B-2"
     ]
   },
   {
     "id": "sample-003",
     "title": "サンプル作品タイトル C",
-    "category": "サンプルカテゴリ3",
-    "price": "880円（税込）",
-    "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
-    "pvCount": 9800,
-    "cvrScore": 65,
+    "category": "DL動画",
+    "price": "1,980円（税込）",
+    "affiliateUrl": "https://www.dlsite.com/maniax/work/=/product_id/YOUR_PRODUCT_ID.html",
+    "pvCount": 32000,
+    "cvrScore": 85,
     "images": [
       "https://placehold.co/480x360?text=Main+C",
-      "https://placehold.co/480x360?text=Sample+C-1",
-      "https://placehold.co/480x360?text=Sample+C-2"
+      "https://placehold.co/480x360?text=Sample+C-1"
+    ]
+  },
+  {
+    "id": "sample-004",
+    "title": "サンプル作品タイトル D",
+    "category": "DVD",
+    "price": "3,480円（税込）",
+    "affiliateUrl": "https://www.fanza.com/mono/dvd/YOUR_PRODUCT_ID/",
+    "pvCount": 9800,
+    "cvrScore": 78,
+    "images": [
+      "https://placehold.co/480x360?text=Main+D",
+      "https://placehold.co/480x360?text=Sample+D-1"
     ]
   }
 ]

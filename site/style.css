@@ -32,23 +32,123 @@ body {
   gap: 24px;
 }
 
-.sort-bar {
+.filter-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
   background: var(--bar-bg);
-  padding: 8px;
-  border-radius: 12px;
+  padding: 16px;
+  border-radius: 16px;
   border: 1px solid var(--card-border);
 }
 
-.sort-bar-label {
+.genre-select-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.genre-select-label {
   font-size: 0.85rem;
   font-weight: 700;
   color: #cbd5e1;
-  padding-left: 8px;
+}
+
+#genre-select {
+  background: var(--card-bg);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(236, 72, 153, 0.5);
+  cursor: pointer;
+}
+
+#genre-select:focus {
+  outline: 2px solid var(--pink-from);
+}
+
+.result-count {
+  padding: 0 4px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.result-count-genre {
+  color: #f472b6;
+  font-weight: 700;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.age-gate {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+}
+
+.age-gate-box {
+  max-width: 360px;
+  width: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+.age-gate-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+
+.age-gate-text {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.age-gate-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.age-gate-btn {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.age-gate-btn--yes {
+  background: linear-gradient(to right, var(--pink-from), var(--pink-to));
+  color: #ffffff;
+}
+
+.age-gate-btn--no {
+  background: #334155;
+  color: #cbd5e1;
 }
 
 .sort-buttons {
