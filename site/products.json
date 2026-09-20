@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sample-001",
+    "title": "サンプル商品タイトル A",
+    "packageImageUrl": "https://placehold.co/300x420?text=Package+A",
+    "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
+    "views": 1520,
+    "clicks": 410,
+    "sales": 62
+  },
+  {
+    "id": "sample-002",
+    "title": "サンプル商品タイトル B",
+    "packageImageUrl": "https://placehold.co/300x420?text=Package+B",
+    "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
+    "views": 980,
+    "clicks": 505,
+    "sales": 88
+  },
+  {
+    "id": "sample-003",
+    "title": "サンプル商品タイトル C",
+    "packageImageUrl": "https://placehold.co/300x420?text=Package+C",
+    "affiliateUrl": "https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2F&af_id=YOUR_AFFILIATE_ID&ch=link",
+    "views": 2100,
+    "clicks": 300,
+    "sales": 20
+  }
+]

@@ -1,0 +1,121 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --card-bg: #f7f7f8;
+  --accent: #2563eb;
+  --accent-fg: #ffffff;
+  --muted: #6b7280;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --fg: #f0f0f0;
+    --card-bg: #1e1e1e;
+    --muted: #9ca3af;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+}
+
+.site-header h1 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.sort-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.sort-btn.is-active {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.ad-slot {
+  min-height: 90px;
+  margin: 0 16px 16px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 0 16px 32px;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+.product-card .product-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.product-card .product-title {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+.product-card .product-stats {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.product-card .affiliate-btn {
+  display: block;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  text-decoration: none;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品一覧</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>商品一覧</h1>
+    <div class="sort-buttons" role="group" aria-label="並べ替え">
+      <button type="button" class="sort-btn is-active" data-sort="popularity">人気順</button>
+      <button type="button" class="sort-btn" data-sort="recommended">おすすめ</button>
+    </div>
+  </header>
+
+  <!-- ここにGoogle広告のクリック報酬型タグ(AdSense等の管理画面で発行されたコード)をそのまま貼る -->
+  <div class="ad-slot" id="ad-slot-top"></div>
+
+  <main>
+    <div class="product-grid" id="product-grid"></div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
