@@ -45,6 +45,24 @@
     <main class="product-list" id="product-list"></main>
   </div>
 
+  <button type="button" class="favorites-fab" id="favorites-fab">
+    ⭐ お気に入り <span class="favorites-fab-count" id="favorites-fab-count">0</span>
+  </button>
+
+  <div class="favorites-modal" id="favorites-modal" hidden>
+    <div class="favorites-modal-box">
+      <div class="favorites-modal-header">
+        <p class="favorites-modal-title">⭐ お気に入りリスト</p>
+        <button type="button" class="favorites-modal-close" id="favorites-modal-close">✕</button>
+      </div>
+      <div class="favorites-modal-body" id="favorites-modal-body"></div>
+      <div class="favorites-modal-footer">
+        <button type="button" class="bulk-buy-btn" id="bulk-buy-btn">選択した作品をまとめて購入する</button>
+        <p class="bulk-buy-note">※チェックした作品それぞれの外部販売サイトが新しいタブで開きます（合算決済ではありません）</p>
+      </div>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
