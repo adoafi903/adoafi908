@@ -94,6 +94,17 @@ python3 -m http.server 8080
 # ブラウザで http://localhost:8080/index.html を開く
 ```
 
-## 公開する
+## 公開する（HTTPS化 / SSL化）
 
-GitHub Pagesなど、静的ファイルをそのまま配信できるホスティングにこの`site`ディレクトリの内容をアップロードしてください。
+`.github/workflows/deploy-pages.yml` により、このブランチの`site/`が変更されるたびに自動でGitHub Pagesへデプロイされます。GitHub Pagesは`https://`のURLを自動発行するため、追加のSSL証明書設定は不要です。
+
+DMMアフィリエイト等の「サイトURL」申請には、発行された`https://<ユーザー名>.github.io/<リポジトリ名>/`のURLをそのまま使えます。
+
+### 有効化に必要な、あなた自身が行う一度だけの設定
+
+1. **リポジトリを公開(public)にする**
+   `Settings > General > Danger Zone > Change repository visibility` から Public に変更。
+   （GitHub Pagesは無料のFreeプランでは公開リポジトリでのみ使えます。非公開のままにしたい場合はNetlify/Vercel/Cloudflare Pages等の利用を検討してください。）
+2. **GitHub Pagesのソースを「GitHub Actions」にする**
+   `Settings > Pages > Build and deployment > Source` を `GitHub Actions` に設定。
+3. 上記2つを設定後、このブランチの`site/`配下に変更をpushすると、自動でワークフローが実行されデプロイされます（`Actions`タブで進行状況を確認できます）。初回は`Settings > Pages`の画面、または`Actions`タブのワークフロー実行結果に表示されるURLで公開先を確認してください。
