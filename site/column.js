@@ -5,6 +5,10 @@ function escapeHtml(value) {
 }
 
 const DEFAULT_AD_SLOT_HTML = "<!-- ここにアドアフィ(DMM/DLsite等)またはGoogleアフィリエイト(AdSense等)のコードを貼る -->";
+const CATEGORY_LABELS = {
+  コラム: "📝 コラム",
+  出会い: "💌 出会い",
+};
 
 // 広告タグに<script>が含まれる場合、innerHTMLだけでは実行されないため
 // スクリプト要素を作り直して差し込むことで実行されるようにする
@@ -29,6 +33,11 @@ function renderColumnList(columns) {
   const list = document.getElementById("column-list");
   if (!list) return;
 
+  if (columns.length === 0) {
+    list.innerHTML = `<p class="empty-state">該当する記事が見つかりませんでした。</p>`;
+    return;
+  }
+
   list.innerHTML = columns
     .map(
       (c) => `
@@ -39,6 +48,45 @@ function renderColumnList(columns) {
         </a>`
     )
     .join("");
+}
+
+function setupCategoryFilter(allColumns) {
+  const select = document.getElementById("category-select");
+  if (!select) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const validCategories = ["ALL", ...Object.keys(CATEGORY_LABELS)];
+  const requested = params.get("category");
+  let currentCategory = validCategories.includes(requested) ? requested : "ALL";
+  select.value = currentCategory;
+
+  function update() {
+    const filtered = currentCategory === "ALL" ? allColumns : allColumns.filter((c) => c.category === currentCategory);
+    renderColumnList(filtered);
+  }
+
+  update();
+
+  select.addEventListener("change", () => {
+    currentCategory = select.value;
+    update();
+  });
+}
+
+function renderRecommendedService(service) {
+  if (!service) return "";
+
+  return `
+    <div class="recommended-service">
+      <p class="recommended-service-label">おすすめサービス</p>
+      <div class="recommended-service-card">
+        <p class="recommended-service-name">${escapeHtml(service.name)}</p>
+        <p class="recommended-service-description">${escapeHtml(service.description)}</p>
+        <a class="recommended-service-btn" href="${escapeHtml(service.affiliateUrl)}" target="_blank" rel="noopener noreferrer">
+          👉 公式サイトを見る
+        </a>
+      </div>
+    </div>`;
 }
 
 async function renderColumnArticle(columns) {
@@ -57,6 +105,7 @@ async function renderColumnArticle(columns) {
   document.title = `ED.not | ${article.title}`;
 
   const bodyHtml = article.body.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
+  const recommendedHtml = renderRecommendedService(article.recommendedService);
 
   let relatedHtml = "";
   if (article.relatedProductIds && article.relatedProductIds.length > 0) {
@@ -87,6 +136,7 @@ async function renderColumnArticle(columns) {
     <p class="column-article-date">${escapeHtml(article.publishedAt)}</p>
     <h1 class="column-article-title">${escapeHtml(article.title)}</h1>
     <div class="column-article-body">${bodyHtml}</div>
+    ${recommendedHtml}
     ${relatedHtml}
     <div class="column-ad-slot" id="column-ad-slot"></div>
   `;
@@ -96,7 +146,7 @@ async function renderColumnArticle(columns) {
 
 async function main() {
   const columns = await loadColumns();
-  renderColumnList(columns);
+  setupCategoryFilter(columns);
   await renderColumnArticle(columns);
 }
 

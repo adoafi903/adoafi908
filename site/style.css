@@ -724,6 +724,55 @@ body {
   margin: 0 0 16px;
 }
 
+.recommended-service {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--card-border);
+}
+
+.recommended-service-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.recommended-service-card {
+  border: 1px solid var(--card-border);
+  background: var(--bar-bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recommended-service-name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.recommended-service-description {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.recommended-service-btn {
+  align-self: flex-start;
+  padding: 10px 24px;
+  background: linear-gradient(to right, var(--pink-from), var(--pink-to));
+  color: #ffffff;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.recommended-service-btn:hover {
+  filter: brightness(1.1);
+}
+
 .column-related {
   margin-top: 24px;
   padding-top: 16px;
