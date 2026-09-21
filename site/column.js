@@ -118,6 +118,11 @@ async function renderColumnArticle(columns) {
   document.title = `ED.not | ${article.title}`;
   updateNavActiveState(article.category);
 
+  const metaDescription = document.getElementById("meta-description");
+  if (metaDescription) {
+    metaDescription.setAttribute("content", article.summary);
+  }
+
   const bodyHtml = article.body.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
   const recommendedHtml = renderRecommendedService(article.recommendedService);
 

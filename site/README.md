@@ -163,6 +163,23 @@ python3 -m http.server 8080
 # ブラウザで http://localhost:8080/index.html を開く
 ```
 
+## 検索エンジンに表示されるようにする（SEO）
+
+サイト側では以下を用意しています。
+
+- `robots.txt`: 全ページのクロールを許可し、`sitemap.xml`の場所を明記
+- `sitemap.xml`: トップページ・コラム一覧・コラム記事(id=1〜15)のURL一覧
+- 各ページの`<meta name="description">`（コラム記事は`column.js`が記事ごとの要約文を動的に設定）
+
+ただし、これらを用意しただけでは検索結果にはまだ出ません。以下は**あなた自身が行う必要がある作業**です。
+
+1. [Google Search Console](https://search.google.com/search-console)にアクセスし、Googleアカウントでログイン
+2. プロパティを追加（「URLプレフィックス」で`https://adoafi903.github.io/adoafi908/`を入力）
+3. 所有権の確認（HTMLタグ方式を選ぶと、`<meta>`タグが発行されるので、`index.html`等の`<head>`内に追加する形で私が反映できます。確認用のタグを取得したら教えてください）
+4. 確認できたら、Search Console内の「サイトマップ」メニューから`sitemap.xml`を送信
+
+これで、Googleがサイトをクロールし、検索結果に表示されるようになります（反映までに数日〜数週間かかることがあります）。
+
 ## 公開する（HTTPS化 / SSL化）
 
 `.github/workflows/deploy-pages.yml` により、このブランチの`site/`が変更されるたびに自動でGitHub Pagesへデプロイされます。GitHub Pagesは`https://`のURLを自動発行するため、追加のSSL証明書設定は不要です。
