@@ -41,6 +41,12 @@ body {
   gap: 12px;
 }
 
+.site-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .site-brand {
   font-size: 1.2rem;
   font-weight: 900;
@@ -51,6 +57,24 @@ body {
 
 .site-brand:hover {
   color: var(--pink-to);
+}
+
+.site-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--card-border);
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.site-social:hover {
+  background: var(--fg);
+  color: #ffffff;
 }
 
 .site-nav-links {
