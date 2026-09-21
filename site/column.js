@@ -54,7 +54,7 @@ async function renderColumnArticle(columns) {
     return;
   }
 
-  document.title = `${article.title} | コラム`;
+  document.title = `ED.not | ${article.title}`;
 
   const bodyHtml = article.body.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
 
