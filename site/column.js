@@ -50,6 +50,18 @@ function renderColumnList(columns) {
     .join("");
 }
 
+// ナビの「コラム」「出会い」ボタンは、今どちらのカテゴリを見ているかで
+// ハイライト(is-active)を切り替える。HTMLに固定で書くと現在地とズレるため、
+// 必ずこの関数経由で更新する。
+function updateNavActiveState(category) {
+  const links = document.querySelectorAll(".site-nav-links a");
+  const targetHref = category === "出会い" ? "column.html?category=出会い" : "column.html?category=コラム";
+
+  links.forEach((a) => {
+    a.classList.toggle("is-active", a.getAttribute("href") === targetHref);
+  });
+}
+
 function setupCategoryFilter(allColumns) {
   const select = document.getElementById("category-select");
   if (!select) return;
@@ -63,6 +75,7 @@ function setupCategoryFilter(allColumns) {
   function update() {
     const filtered = currentCategory === "ALL" ? allColumns : allColumns.filter((c) => c.category === currentCategory);
     renderColumnList(filtered);
+    updateNavActiveState(currentCategory);
   }
 
   update();
@@ -103,6 +116,7 @@ async function renderColumnArticle(columns) {
   }
 
   document.title = `ED.not | ${article.title}`;
+  updateNavActiveState(article.category);
 
   const bodyHtml = article.body.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
   const recommendedHtml = renderRecommendedService(article.recommendedService);
