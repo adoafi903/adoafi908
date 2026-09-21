@@ -83,6 +83,33 @@ function updateFavoritesFabCount() {
   document.getElementById("favorites-fab-count").textContent = favoriteIds.size;
 }
 
+function renderRankingBanner(products) {
+  const banner = document.querySelector(".ranking-banner");
+  const track = document.getElementById("ranking-banner-track");
+  if (!banner || !track) return;
+
+  const mangaRanking = products
+    .filter((p) => p.category === "電子書籍")
+    .sort((a, b) => b.cvrScore - a.cvrScore);
+
+  if (mangaRanking.length === 0) {
+    banner.hidden = true;
+    return;
+  }
+
+  const itemsHtml = mangaRanking
+    .map(
+      (p) => `
+        <a class="ranking-banner-item" href="${escapeHtml(p.affiliateUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(p.title)}">
+          <img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(p.title)}" loading="lazy">
+        </a>`
+    )
+    .join("");
+
+  // 途切れなくループさせるため、同じ並びを2セット連結する
+  track.innerHTML = itemsHtml + itemsHtml;
+}
+
 function filterAndSort(products, genre, sortType) {
   const filtered = genre === "ALL" ? products : products.filter((p) => p.category === genre);
   return SORTERS[sortType](filtered);
@@ -243,6 +270,8 @@ async function main() {
 
   const response = await fetch(PRODUCTS_URL);
   allProducts = await response.json();
+
+  renderRankingBanner(allProducts);
 
   const params = new URLSearchParams(window.location.search);
   const requestedGenre = params.get("genre");

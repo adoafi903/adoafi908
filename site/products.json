@@ -16,6 +16,49 @@
     ]
   },
   {
+    "id": "sample-005",
+    "title": "サンプル作品タイトル E",
+    "category": "電子書籍",
+    "price": "660円（税込）",
+    "comment": "編集部コメントのサンプルテキストです。作品の見どころなどをここに記載します。",
+    "affiliateUrl": "https://al.dlsite.com/r?aid=YOUR_AFFILIATE_ID&url=https%3A%2F%2Fwww.dlsite.com%2F",
+    "pvCount": 18900,
+    "cvrScore": 90,
+    "images": [
+      "https://placehold.co/480x360?text=Main+E",
+      "https://placehold.co/480x360?text=Sample+E-1"
+    ]
+  },
+  {
+    "id": "sample-006",
+    "title": "サンプル作品タイトル F",
+    "category": "電子書籍",
+    "price": "770円（税込）",
+    "discountBadge": "30% OFF",
+    "comment": "編集部コメントのサンプルテキストです。作品の見どころなどをここに記載します。",
+    "affiliateUrl": "https://al.dlsite.com/r?aid=YOUR_AFFILIATE_ID&url=https%3A%2F%2Fwww.dlsite.com%2F",
+    "pvCount": 21300,
+    "cvrScore": 88,
+    "images": [
+      "https://placehold.co/480x360?text=Main+F",
+      "https://placehold.co/480x360?text=Sample+F-1"
+    ]
+  },
+  {
+    "id": "sample-007",
+    "title": "サンプル作品タイトル G",
+    "category": "電子書籍",
+    "price": "440円（税込）",
+    "comment": "編集部コメントのサンプルテキストです。作品の見どころなどをここに記載します。",
+    "affiliateUrl": "https://al.dlsite.com/r?aid=YOUR_AFFILIATE_ID&url=https%3A%2F%2Fwww.dlsite.com%2F",
+    "pvCount": 12700,
+    "cvrScore": 75,
+    "images": [
+      "https://placehold.co/480x360?text=Main+G",
+      "https://placehold.co/480x360?text=Sample+G-1"
+    ]
+  },
+  {
     "id": "sample-002",
     "title": "サンプル作品タイトル B",
     "category": "アダルト写真集",
