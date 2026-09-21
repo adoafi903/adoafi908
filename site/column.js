@@ -4,6 +4,22 @@ function escapeHtml(value) {
   return div.innerHTML;
 }
 
+const DEFAULT_AD_SLOT_HTML = "<!-- ここにアドアフィ(DMM/DLsite等)またはGoogleアフィリエイト(AdSense等)のコードを貼る -->";
+
+// 広告タグに<script>が含まれる場合、innerHTMLだけでは実行されないため
+// スクリプト要素を作り直して差し込むことで実行されるようにする
+function insertExecutableHtml(container, html) {
+  container.innerHTML = html;
+  container.querySelectorAll("script").forEach((oldScript) => {
+    const newScript = document.createElement("script");
+    for (const attr of oldScript.attributes) {
+      newScript.setAttribute(attr.name, attr.value);
+    }
+    newScript.textContent = oldScript.textContent;
+    oldScript.parentNode.replaceChild(newScript, oldScript);
+  });
+}
+
 async function loadColumns() {
   const res = await fetch("columns.json");
   return res.json();
@@ -72,7 +88,10 @@ async function renderColumnArticle(columns) {
     <h1 class="column-article-title">${escapeHtml(article.title)}</h1>
     <div class="column-article-body">${bodyHtml}</div>
     ${relatedHtml}
+    <div class="column-ad-slot" id="column-ad-slot"></div>
   `;
+
+  insertExecutableHtml(document.getElementById("column-ad-slot"), article.adSlotHtml || DEFAULT_AD_SLOT_HTML);
 }
 
 async function main() {
