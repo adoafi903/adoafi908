@@ -1,0 +1,14 @@
+[
+  { "id": "aircon-cool", "name": "エアコン（冷房）", "icon": "❄️", "category": "空調", "watt": 700, "hoursPerDay": 6 },
+  { "id": "aircon-heat", "name": "エアコン（暖房）", "icon": "🔥", "category": "空調", "watt": 900, "hoursPerDay": 5 },
+  { "id": "fridge", "name": "冷蔵庫", "icon": "🧊", "category": "キッチン", "watt": 55, "hoursPerDay": 24 },
+  { "id": "tv", "name": "テレビ（55型）", "icon": "📺", "category": "リビング", "watt": 150, "hoursPerDay": 4 },
+  { "id": "washer", "name": "洗濯乾燥機", "icon": "🧺", "category": "生活家電", "watt": 1200, "hoursPerDay": 1 },
+  { "id": "microwave", "name": "電子レンジ", "icon": "🍱", "category": "キッチン", "watt": 1300, "hoursPerDay": 0.2 },
+  { "id": "rice-cooker", "name": "炊飯器（保温含む）", "icon": "🍚", "category": "キッチン", "watt": 100, "hoursPerDay": 3 },
+  { "id": "dryer", "name": "ドライヤー", "icon": "💨", "category": "生活家電", "watt": 1200, "hoursPerDay": 0.25 },
+  { "id": "lighting", "name": "照明（LED・全室）", "icon": "💡", "category": "リビング", "watt": 60, "hoursPerDay": 6 },
+  { "id": "pc", "name": "デスクトップPC", "icon": "🖥️", "category": "仕事・学習", "watt": 150, "hoursPerDay": 5 },
+  { "id": "kettle", "name": "電気ケトル", "icon": "☕", "category": "キッチン", "watt": 1300, "hoursPerDay": 0.1 },
+  { "id": "dishwasher", "name": "食洗機", "icon": "🍽️", "category": "キッチン", "watt": 1100, "hoursPerDay": 0.5 }
+]

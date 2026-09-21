@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="家電ごとの使用時間から、1日・1週間・1ヶ月分の電気代をかんたんに試算できるシミュレーターです。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000000'/%3E%3Ctext x='50' y='72' font-family='Arial, sans-serif' font-size='58' font-weight='900' fill='%233987e5' text-anchor='middle'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+<title>電気代シミュレーター | 家電ごとの使用時間でかんたん試算</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="eyebrow">ELECTRICITY COST SIMULATOR</p>
+      <h1>⚡ 電気代シミュレーター</h1>
+      <p class="lead">家電ごとの消費電力と使用時間をもとに、1日・1週間・1ヶ月分の電気代をかんたんに試算します。</p>
+    </header>
+
+    <section class="controls" aria-label="設定">
+      <div class="control-field">
+        <label for="price-input">電力量料金単価</label>
+        <div class="price-input-wrap">
+          <span aria-hidden="true">¥</span>
+          <input type="number" id="price-input" value="31" min="1" max="100" step="0.1" inputmode="decimal">
+          <span>/ kWh</span>
+        </div>
+      </div>
+
+      <div class="period-tabs" role="tablist" aria-label="表示期間">
+        <button type="button" role="tab" aria-selected="true" data-period="day" class="period-tab is-active">1日分</button>
+        <button type="button" role="tab" aria-selected="false" data-period="week" class="period-tab">1週間分</button>
+        <button type="button" role="tab" aria-selected="false" data-period="month" class="period-tab">1ヶ月分</button>
+      </div>
+    </section>
+
+    <section class="stat-row" aria-label="集計サマリー">
+      <div class="stat-tile stat-tile--hero">
+        <p class="stat-label" id="stat-hero-label">1日分の電気代合計</p>
+        <p class="stat-value" id="total-cost">¥0</p>
+        <p class="stat-sub" id="total-kwh">0.0 kWh</p>
+      </div>
+      <div class="stat-tile">
+        <p class="stat-label">登録している家電</p>
+        <p class="stat-value" id="appliance-count">0台</p>
+        <p class="stat-sub">スライダーで台数分すべて調整可能</p>
+      </div>
+      <div class="stat-tile">
+        <p class="stat-label">電気代が最も高い家電</p>
+        <p class="stat-value" id="top-appliance">-</p>
+        <p class="stat-sub" id="top-appliance-cost">¥0</p>
+      </div>
+    </section>
+
+    <section class="chart-section" aria-label="家電ごとの電気代内訳">
+      <div class="chart-header">
+        <h2>家電ごとの電気代内訳</h2>
+        <span class="chart-header-note" id="chart-period-note">1日あたり・金額が高い順</span>
+      </div>
+      <div class="bar-chart" id="bar-chart"></div>
+    </section>
+
+    <section class="list-section" aria-label="家電一覧と使用時間の調整">
+      <div class="chart-header">
+        <h2>家電ごとに使用時間を調整</h2>
+        <span class="chart-header-note">スライダーで1日あたりの使用時間を変更すると、上の内訳にすぐ反映されます</span>
+      </div>
+
+      <div class="appliance-table" id="appliance-table">
+        <div class="appliance-row appliance-row--head" role="row">
+          <span class="col col-name">家電</span>
+          <span class="col col-watt">消費電力</span>
+          <span class="col col-hours">1日の使用時間</span>
+          <span class="col col-kwh">1日の電力量</span>
+          <span class="col col-cost">選択期間の電気代</span>
+        </div>
+        <div id="appliance-rows"></div>
+      </div>
+    </section>
+
+    <footer class="site-footer-note">
+      <p>※本シミュレーターの試算結果は目安です。ご契約の料金プランや季節・機種・使用状況により、実際の電気代とは異なる場合があります。</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
