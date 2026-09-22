@@ -186,7 +186,7 @@ python3 -m http.server 8080
 ただし、これらを用意しただけでは検索結果にはまだ出ません。以下は**あなた自身が行う必要がある作業**です。
 
 1. [Google Search Console](https://search.google.com/search-console)にアクセスし、Googleアカウントでログイン
-2. プロパティを追加（「URLプレフィックス」で`https://adoafi903.github.io/adoafi908/`を入力）
+2. プロパティを追加（「URLプレフィックス」で`https://adoafi903.github.io/`を入力）
 3. 所有権の確認（HTMLタグ方式を選ぶと、`<meta>`タグが発行されるので、`index.html`等の`<head>`内に追加する形で私が反映できます。確認用のタグを取得したら教えてください）
 4. 確認できたら、Search Console内の「サイトマップ」メニューから`sitemap.xml`を送信
 
@@ -196,7 +196,7 @@ python3 -m http.server 8080
 
 `.github/workflows/deploy-pages.yml` により、このブランチの`site/`が変更されるたびに自動でGitHub Pagesへデプロイされます。GitHub Pagesは`https://`のURLを自動発行するため、追加のSSL証明書設定は不要です。
 
-DMMアフィリエイト等の「サイトURL」申請には、発行された`https://<ユーザー名>.github.io/<リポジトリ名>/`のURLをそのまま使えます。
+このリポジトリは`adoafi903.github.io`という名前のため、GitHub Pagesの「ユーザーサイト」としてドメイン直下（`https://adoafi903.github.io/`）で公開されます（一般的なプロジェクトリポジトリの場合は`https://<ユーザー名>.github.io/<リポジトリ名>/`という一段下のパスになりますが、このリポジトリでは該当しません）。DMMアフィリエイト等の「サイトURL」申請には、この`https://adoafi903.github.io/`をそのまま使えます。
 
 ### 有効化に必要な、あなた自身が行う一度だけの設定
 

@@ -40,7 +40,7 @@ Slackで Incoming Webhook を作成し、URLを取得します。
 
 `imageUrl`を省略した場合、Slack通知には「画像は表示されません」という注記が表示されます（画像なしでも通知自体は送られます）。
 
-**画像の置き場所について**: このリポジトリはGitHub Pagesで公開されているので、画像ファイルを`site/posts/`のようなフォルダに置いてコミット・プッシュすれば、`https://adoafi903.github.io/adoafi908/posts/ファイル名.png`という公開URLが使えます。これを`imageUrl`に指定してください。
+**画像の置き場所について**: このリポジトリはGitHub Pagesで公開されているので、画像ファイルを`site/posts/`のようなフォルダに置いてコミット・プッシュすれば、`https://adoafi903.github.io/posts/ファイル名.png`という公開URLが使えます。これを`imageUrl`に指定してください。
 
 編集後、このファイルをコミット・プッシュしてください。
 
